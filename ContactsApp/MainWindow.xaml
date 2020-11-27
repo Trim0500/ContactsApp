@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactsApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="640" Loaded="Window_Loaded">
+    <Grid Margin="15,15,15,15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <ItemsControl Name="ContactsListItems">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ListBox>
+                            <ListBoxItem Content="{Binding ContactInfo}" MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                        </ListBox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Button Name="Add_Contact_btn" Grid.Row="1" Margin="25,10,475,10" Content="Add Contact..." Click="Add_Contact_btn_Click" />
+        <Button Name="Edit_Contact_btn" Grid.Row="1" Margin="175,10,325,10" Content="Edit Contact..." Click="Edit_Contact_btn_Click"/>
+        <Button Name="Del_Contact_btn" Grid.Row="1" Margin="326,10,174,10" Content="Delete Contact... " Click="Del_Contact_btn_Click"/>
+        <Button Name="Imp_Contact_btn" Grid.Row="1" Margin="475,10,25,10" Content="Import Contact..." Click="Imp_Contact_btn_Click"/>
     </Grid>
 </Window>
