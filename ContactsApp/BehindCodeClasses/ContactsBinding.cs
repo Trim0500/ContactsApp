@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContactsApp.BehindCodeClasses
 {
-    class ContactsBinding
+    public class ContactsBinding
     {
         public string ContactInfo { get; set; }
     }

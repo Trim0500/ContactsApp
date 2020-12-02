@@ -22,9 +22,10 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <Button Name="Add_Contact_btn" Grid.Row="1" Margin="25,10,475,10" Content="Add Contact..." Click="Add_Contact_btn_Click" />
-        <Button Name="Edit_Contact_btn" Grid.Row="1" Margin="175,10,325,10" Content="Edit Contact..." Click="Edit_Contact_btn_Click"/>
-        <Button Name="Del_Contact_btn" Grid.Row="1" Margin="326,10,174,10" Content="Delete Contact... " Click="Del_Contact_btn_Click"/>
-        <Button Name="Imp_Contact_btn" Grid.Row="1" Margin="475,10,25,10" Content="Import Contact..." Click="Imp_Contact_btn_Click"/>
+        <Button Name="Add_Contact_btn" Grid.Row="1" Margin="10,10,490,10" Content="Add Contact..." Click="Add_Contact_btn_Click" />
+        <Button Name="Edit_Contact_btn" Grid.Row="1" Margin="130,10,370,10" Content="Edit Contact..." Click="Edit_Contact_btn_Click"/>
+        <Button Name="Del_Contact_btn" Grid.Row="1" Margin="251,10,249,10" Content="Delete Contact... " Click="Del_Contact_btn_Click"/>
+        <Button Name="Imp_Contact_btn" Grid.Row="1" Margin="370,10,130,10" Content="Import Contact..." Click="Imp_Contact_btn_Click"/>
+        <Button Name="Ex_Contact_btn" Grid.Row="1" Margin="490,10,10,10" Content="Export Contact..." Click="Ex_Contact_btn_Click"/>
     </Grid>
 </Window>
