@@ -15,8 +15,8 @@
             <ItemsControl Name="ContactsListItems">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <ListBox>
-                            <ListBoxItem Content="{Binding ContactInfo}" MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                        <ListBox xmlns:sys="clr-namespace:System;assembly=mscorlib" Name="LB">
+                            <ListBoxItem x:Name="lb" Content="{Binding ContactInfo}" MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
                         </ListBox>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
