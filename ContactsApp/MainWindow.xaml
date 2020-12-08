@@ -12,15 +12,15 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
-            <ItemsControl Name="ContactsListItems">
-                <ItemsControl.ItemTemplate>
+            <ListView Name="ContactsListItems" SelectionChanged="ContactsListItems_SelectionChanged_1">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ListBox xmlns:sys="clr-namespace:System;assembly=mscorlib" Name="LB">
-                            <ListBoxItem x:Name="lb" Content="{Binding ContactInfo}" MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
-                        </ListBox>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding firstName}"/>
+                        </WrapPanel>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </ListView.ItemTemplate>
+            </ListView>
         </ScrollViewer>
         <Button Name="Add_Contact_btn" Grid.Row="1" Margin="10,10,490,10" Content="Add Contact..." Click="Add_Contact_btn_Click" />
         <Button Name="Edit_Contact_btn" Grid.Row="1" Margin="130,10,370,10" Content="Edit Contact..." Click="Edit_Contact_btn_Click"/>
