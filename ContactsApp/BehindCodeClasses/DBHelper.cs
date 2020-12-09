@@ -38,17 +38,17 @@ namespace ContactsApp.BehindCodeClasses
             while (sdr.Read())
             {
                 // Display Record
-                listContento.Add(new ContactsBinding() { ID = (int)sdr["ID"], firstName = (string)sdr["First_Name"], lastName = (string)sdr["Last_Name"], address = (string)sdr["Address"],
-                                                         phoneNumber = (string)sdr["Phone_Num"], email = (string)sdr["email"]});
+                listContento.Add(new ContactsBinding() { ID = (int)sdr["ID"], firstName = checkForNull(sdr, "First_Name"), lastName = checkForNull(sdr, "Last_Name"), address = checkForNull(sdr, "Address"),
+                                                         phoneNumber = checkForNull(sdr, "Phone_Num"), email = checkForNull(sdr, "email")});
             }
             con.Close();
 
             return listContento;
         }
 
-        public string getDetails(int ID)
+        public ContactsBinding getDetails(int ID)
         {
-            string rowContent = null;
+            ContactsBinding CB = new ContactsBinding();
 
             //Create a new instance of the SQLCOnnection class and pass the database path as the parameter, specificy the database to choose & the connection type
             var con = new SqlConnection(@"data source=localhost\SQLEXPRESS;database = ContactDatabase;Trusted_Connection = True");
@@ -66,18 +66,21 @@ namespace ContactsApp.BehindCodeClasses
 
             while (sdr.Read())
             {
-                ContactsBinding CB1 = new ContactsBinding(){ fullName = (string)sdr["Full_Name"], contactMeth = (string)sdr["Contact_Meth"]};
-                StringBuilder SB = new StringBuilder();
-                SB.Append("Full Name: ");
-                SB.Append(CB1.fullName);
-                SB.Append("\n\n");
-                SB.Append(CB1.contactMeth);
-                rowContent = SB.ToString();
+                CB.fullName = checkForNull(sdr, "Full_Name");
+                CB.contactMeth = checkForNull(sdr, "Contact_Meth");
             }
 
             con.Close();
 
-            return rowContent;
+            return CB;
+        }
+
+        public string checkForNull(SqlDataReader reader, string column)
+        {
+            if (reader[column].GetType() == typeof(DBNull))
+                return String.Empty;
+            else
+                return (string)reader[column];
         }
     }
 }

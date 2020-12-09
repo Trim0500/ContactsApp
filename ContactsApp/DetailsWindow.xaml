@@ -5,13 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactsApp"
         mc:Ignorable="d"
-        Title="DetailsWindow" Height="225" Width="320">
-    <Grid>
-        <Label Content="Contact Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="292" Height="40" FontFamily="Calibri" FontSize="22" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <TextBlock x:Name="fNametxt" Margin="10,50,10,119" TextAlignment="Center"/>
-        <TextBlock x:Name="lNametxt" Margin="10,75,10,94" TextAlignment="Center"/>
-        <TextBlock x:Name="addresstxt" Margin="10,100,10,69" TextAlignment="Center"/>
-        <TextBlock x:Name="phonetxt" Margin="10,125,10,44" TextAlignment="Center"/>
-        <TextBlock x:Name="emailtxt" Margin="10,150,10,19" TextAlignment="Center"/>
+        Title="DetailsWindow" Height="225" Width="320" Background="#FF030024">
+    <Grid Margin="10">
+        <Label Content="Contact Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="272" Height="40" FontFamily="Calibri" FontSize="26" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Purple"/>
+        <TextBlock x:Name="nametxt" Margin="10,50,10,68" TextAlignment="Center" TextWrapping="WrapWithOverflow" FontSize="16" FontFamily="Calibri" Foreground="Purple"/>
+        <TextBlock x:Name="contactInfotxt" Margin="10,106,10,10" TextAlignment="Center" TextWrapping="WrapWithOverflow" FontSize="12" FontFamily="Calibri" Foreground="Purple"/>
     </Grid>
 </Window>

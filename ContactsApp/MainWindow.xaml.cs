@@ -35,12 +35,12 @@ namespace ContactsApp
             ContactsListItems.ItemsSource = contacts;
         }
 
-        private void ContactsListItems_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void ContactsListItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ContactsBinding selectedContact = (ContactsBinding)ContactsListItems.SelectedItem;
-            if(selectedContact != null)
+            if (selectedContact != null)
             {
-                DetailsWindow newWindow = new DetailsWindow(selectedContact);
+                DetailsWindow newWindow = new DetailsWindow(selectedContact.ID);
                 newWindow.ShowDialog();
             }
             contacts = DBH.getContacts();
@@ -77,7 +77,5 @@ namespace ContactsApp
         {
             MessageBox.Show("This is a test");
         }
-
-        
     }
 }

@@ -21,17 +21,16 @@ namespace ContactsApp
     public partial class DetailsWindow : Window
     {
         ContactsBinding CB;
-        public DetailsWindow(ContactsBinding CB)
+        public DetailsWindow(int id)
         {
             InitializeComponent();
 
-            this.CB = CB;
+            DBHelper DBH = DBHelper.instance;
 
-            fNametxt.Text = "First Name: " + CB.firstName.ToString();
-            lNametxt.Text = "Last Name: " + CB.lastName.ToString();
-            addresstxt.Text = "Address: " + CB.address.ToString();
-            phonetxt.Text = "Phone Number: " + CB.phoneNumber.ToString();
-            emailtxt.Text = "E-Mail: " + CB.email.ToString();
+            CB = DBH.getDetails(id);
+
+            nametxt.Text = "Name:\n" + CB.fullName.ToString();
+            contactInfotxt.Text = "Points of Contact:\n" + CB.contactMeth.ToString();
         }
     }
 }
