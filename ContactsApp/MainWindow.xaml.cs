@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ContactsApp.BehindCodeClasses;
 using System.Windows.Controls.Primitives;
+using Microsoft.Win32;
+using System.IO;
 
 namespace ContactsApp
 {
@@ -82,12 +84,32 @@ namespace ContactsApp
 
         private void Imp_Contact_btn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This is a test");
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "*.csv|*.csv|All files(*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var myContacts = File.ReadAllText(openFileDialog.FileName);
+            }
         }
 
         private void Ex_Contact_btn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This is a test");
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            
+            saveFileDialog.Filter = "*.csv|*.csv|All files(*.*)|*.*";
+            
+            if(saveFileDialog.ShowDialog() == true)
+            {
+                String myContacts= "";
+
+                foreach(ContactsBinding contact in contacts)
+                {
+                    myContacts += contact.firstName + "," + contact.lastName + "," + contact.address + "," + contact.email + "\r\n";
+                }
+                File.WriteAllText(saveFileDialog.FileName, myContacts);
+            }
         }
 
 
