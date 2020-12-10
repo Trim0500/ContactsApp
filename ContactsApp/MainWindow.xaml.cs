@@ -106,7 +106,7 @@ namespace ContactsApp
 
                 foreach(ContactsBinding contact in contacts)
                 {
-                    myContacts += contact.firstName + "," + contact.lastName + "," + contact.address + "," + contact.email + "\r\n";
+                    myContacts += contact.firstName + "," + contact.lastName + "," + contact.address + "," + contact.phoneNumber + "," + contact.email + "\r\n";
                 }
                 File.WriteAllText(saveFileDialog.FileName, myContacts);
             }
