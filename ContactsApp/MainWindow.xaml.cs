@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ContactsApp.BehindCodeClasses;
+using System.Windows.Controls.Primitives;
 
 namespace ContactsApp
 {
@@ -45,8 +46,19 @@ namespace ContactsApp
             }
             contacts = DBH.getContacts();
             ContactsListItems.ItemsSource = contacts;
+        }        
+        private void ContactsListItems_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ContactPopUp.PlacementTarget = ContactsListItems;
+            ContactPopUp.Placement = PlacementMode.Top;
+            ContactPopUp.IsOpen = true;
         }
-        
+
+        private void ContactsListItems_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ContactPopUp.IsOpen = false;
+        }
+
         private void Add_Contact_btn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("This is a test");
@@ -77,5 +89,7 @@ namespace ContactsApp
         {
             MessageBox.Show("This is a test");
         }
+
+
     }
 }

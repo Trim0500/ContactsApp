@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:ContactsApp"
         mc:Ignorable="d"
         Title="Contacts Manager" Height="450" Width="640" Loaded="Window_Loaded" Background="#FF030024">
-    <Grid Margin="15">
+    <Grid Margin="15,25,15,15">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
-            <ListView Name="ContactsListItems" Background="#FF030024" Foreground="Purple" BorderBrush="#FF05003E" SelectionMode="Single" MouseDoubleClick="ContactsListItems_MouseDoubleClick">
+            <ListView Name="ContactsListItems" Background="#FF030024" Foreground="Purple" BorderBrush="#FF05003E" SelectionMode="Single" MouseDoubleClick="ContactsListItems_MouseDoubleClick" MouseEnter="ContactsListItems_MouseEnter" MouseLeave="ContactsListItems_MouseLeave" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
@@ -22,6 +22,13 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
+
+        <Popup Name="ContactPopUp">
+            <WrapPanel>
+                <TextBlock Text="Double click the name of a contact to view more information" FontSize="16" FontFamily="Calibri" Foreground="#FF030024" Background="Purple"/>
+            </WrapPanel>
+        </Popup>
+        
         <Button Name="Add_Contact_btn" Grid.Row="1" Margin="10,10,490,10" Content="Add Contact..." Click="Add_Contact_btn_Click" Foreground="#FF030024" Background="Purple" BorderBrush="DarkMagenta"/>
         <Button Name="Edit_Contact_btn" Grid.Row="1" Margin="130,10,370,10" Content="Edit Contact..." Click="Edit_Contact_btn_Click" Foreground="#FF030024" Background="Purple" BorderBrush="DarkMagenta"/>
         <Button Name="Del_Contact_btn" Grid.Row="1" Margin="251,10,249,10" Content="Delete Contact... " Click="Del_Contact_btn_Click" Foreground="#FF030024" Background="Purple" BorderBrush="DarkMagenta"/>
