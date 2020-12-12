@@ -90,7 +90,15 @@ namespace ContactsApp
 
             if (openFileDialog.ShowDialog() == true)
             {
-                var myContacts = File.ReadAllText(openFileDialog.FileName);
+                var myContacts = File.ReadLines(openFileDialog.FileName);
+                foreach(String line in myContacts)
+                {
+                    String[] contactInfo = line.Split(',');
+                    DBH.addContacts(contactInfo[0], contactInfo[1], contactInfo[2], contactInfo[3], contactInfo[4]);
+                }
+                contacts = DBH.getContacts();
+                ContactsListItems.ItemsSource = contacts;
+                MessageBox.Show("Your contacts have been added");
             }
         }
 

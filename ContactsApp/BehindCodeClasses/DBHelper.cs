@@ -82,5 +82,26 @@ namespace ContactsApp.BehindCodeClasses
             else
                 return (string)reader[column];
         }
+
+        public void addContacts(String f, String l, String a, String p, String e)
+        {
+            //Create a new instance of the SQLCOnnection class and pass the database path as the parameter, specificy the database to choose & the connection type
+            var con = new SqlConnection(@"data source=localhost\SQLEXPRESS;database = ContactDatabase;Trusted_Connection = True");
+
+            //Create an instance of the SQLCommand class & pass the SQL query as a parameter using the Connection class instance
+            SqlCommand cm = new SqlCommand("INSERT INTO contact (first_name, last_name, address, phone_num, email)" +
+                                        "VALUES (@firstName, @lastName, @address, @phoneNumber, @email)", con);
+            //Open the connection
+            con.Open();
+            cm.Parameters.AddWithValue("@firstName", f);
+            cm.Parameters.AddWithValue("@lastName", l);
+            cm.Parameters.AddWithValue("@address", a);
+            cm.Parameters.AddWithValue("@phoneNumber", p);
+            cm.Parameters.AddWithValue("@email", e);
+
+            cm.ExecuteNonQuery();
+
+            con.Close();
+        }
     }
 }
