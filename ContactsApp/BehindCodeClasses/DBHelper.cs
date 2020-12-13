@@ -83,16 +83,17 @@ namespace ContactsApp.BehindCodeClasses
                 return (string)reader[column];
         }
 
-        public void addContacts(String f, String l, String a, String p, String e)
+        public void addContacts(string f, string l, string a, string p, string e)
         {
             //Create a new instance of the SQLCOnnection class and pass the database path as the parameter, specificy the database to choose & the connection type
             var con = new SqlConnection(@"data source=localhost\SQLEXPRESS;database = ContactDatabase;Trusted_Connection = True");
 
             //Create an instance of the SQLCommand class & pass the SQL query as a parameter using the Connection class instance
             SqlCommand cm = new SqlCommand("INSERT INTO contact (first_name, last_name, address, phone_num, email)" +
-                                        "VALUES (@firstName, @lastName, @address, @phoneNumber, @email)", con);
+                                           "VALUES (@firstName, @lastName, @address, @phoneNumber, @email)", con);
             //Open the connection
             con.Open();
+
             cm.Parameters.AddWithValue("@firstName", f);
             cm.Parameters.AddWithValue("@lastName", l);
             cm.Parameters.AddWithValue("@address", a);
@@ -104,43 +105,41 @@ namespace ContactsApp.BehindCodeClasses
             con.Close();
         }
         
-        public void deleteContacts(String f, String l, String a ,String p, String e)
+        public void deleteContacts(int id)
         {
             //Create a new instance of the SQLCOnnection class and pass the database path as the parameter, specificy the database to choose & the connection type
             var con = new SqlConnection(@"data source=localhost\SQLEXPRESS;database = ContactDatabase;Trusted_Connection = True");
 
             //Create an instance of the SQLCommand class & pass the SQL query as a parameter using the Connection class instance
-            SqlCommand cm = new SqlCommand("DELETE FROM contact (first_name, last_name, address, phone_num, email)" +
-                                        "VALUES (@firstName, @lastName, @address, @phoneNumber, @email)", con);
+            SqlCommand cm = new SqlCommand("DELETE FROM contact WHERE ID = @id", con);
             //Open the connection
             con.Open();
-            cm.Parameters.AddWithValue("@firstName", f);
-            cm.Parameters.AddWithValue("@lastName", l);
-            cm.Parameters.AddWithValue("@address", a);
-            cm.Parameters.AddWithValue("@phoneNumber", p);
-            cm.Parameters.AddWithValue("@email", e);
+
+            cm.Parameters.AddWithValue("@id", id);
             
             cm.ExecuteNonQuery();
 
             con.Close();
         }
-        public void editContacts(String f, String l, String a, String p, String e)
+        public void editContacts(int id, string f, string l, string a, string p, string e)
         {
             var con = new SqlConnection(@"data source=localhost\SQLEXPRESS;database = ContactDatabase;Trusted_Connection = True");
 
-            SqlCommand cm = new SqlCommand("UPDATE contact SET (first_name, last_name, address, phone_num, email)" +
-                                       "VALUES (@firstName, @lastName, @address, @phoneNumber, @email)", con);
+            SqlCommand cm = new SqlCommand("UPDATE contact " +
+                                           "SET First_Name = @firstName, Last_Name = @lastName, Address = @address, Phone_Num = @phoneNum, email = @email " + 
+                                           "WHERE ID = @id", con);
 
             con.Open();
+
             cm.Parameters.AddWithValue("@firstName", f);
             cm.Parameters.AddWithValue("@lastName", l);
             cm.Parameters.AddWithValue("@address", a);
-            cm.Parameters.AddWithValue("@phoneNumber", p);
+            cm.Parameters.AddWithValue("@phoneNum", p);
             cm.Parameters.AddWithValue("@email", e);
+            cm.Parameters.AddWithValue("@id", id);
 
             cm.ExecuteNonQuery();
 
-            con.Close();
-        }
+            con.Close();        }
     }
 }

@@ -1,0 +1,31 @@
+﻿<Window x:Class="ContactsApp.AddContactWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ContactsApp"
+        mc:Ignorable="d"
+        Title="AddContactWindow" Height="350" Width="700">
+    <Grid>
+        <DockPanel>
+            <Label DockPanel.Dock="Top" x:Name="Add_Contact_Title" Content="Add a Contact by Filling in the Textboxes:" Margin="50,10,0,0" FontSize="36" FontFamily="Calibri"/>
+            <StackPanel Name="Field_labels_pnl" DockPanel.Dock="Left">
+                <Label Name="First_Name_lbl" Content="First Name:" FontSize="18" FontFamily="Calibri"/>
+                <Label Name="Last_Name_lbl" Content="Last Name:" FontSize="18" FontFamily="Calibri"/>
+                <Label Name="Address_lbl" Content="Address:" FontSize="18" FontFamily="Calibri"/>
+                <Label Name="Phone_Num_lbl" Content="Phone Number:" FontSize="18" FontFamily="Calibri"/>
+                <Label Name="email_lbl" Content="E-Mail:" FontSize="18" FontFamily="Calibri"/>
+            </StackPanel>
+            <StackPanel Name="Button_pnl" Orientation="Horizontal" DockPanel.Dock="Bottom">
+                <Button Name="clear_btn" Content=" Clear Inputs " Margin="100, 0, 0, 0" Click="clear_btn_Click"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Right" Name="User_Inputs">
+                <TextBox Name="First_Name_txt" Text="Ex. Tristan" FontSize="18" FontFamily="Calibri" Margin="5"/>
+                <TextBox Name="Last_Name_txt" Text="Ex. Lafleur" FontSize="18" FontFamily="Calibri" Margin="5"/>
+                <TextBox Name="Address_txt" Text="Ex. 32 rue René" FontSize="18" FontFamily="Calibri" Margin="5"/>
+                <TextBox Name="Phone_Num_txt" Text="Ex. (438) 526-5985" FontSize="18" FontFamily="Calibri" Margin="5"/>
+                <TextBox Name="email_txt" Text="Ex. tristanblacklafleur@hotmail.ca" FontSize="18" FontFamily="Calibri" Margin="5"/>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

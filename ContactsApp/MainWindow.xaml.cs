@@ -35,18 +35,22 @@ namespace ContactsApp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             contacts = DBH.getContacts();
+
             ContactsListItems.ItemsSource = contacts;
         }
 
         private void ContactsListItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ContactsBinding selectedContact = (ContactsBinding)ContactsListItems.SelectedItem;
+
             if (selectedContact != null)
             {
                 DetailsWindow newWindow = new DetailsWindow(selectedContact.ID);
                 newWindow.ShowDialog();
             }
+
             contacts = DBH.getContacts();
+
             ContactsListItems.ItemsSource = contacts;
         }        
         private void ContactsListItems_MouseEnter(object sender, MouseEventArgs e)
@@ -63,22 +67,57 @@ namespace ContactsApp
 
         private void Add_Contact_btn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This is a test");
+            AddContactWindow ACW1 = new AddContactWindow();
+
+            ACW1.ShowDialog();
+
             contacts = DBH.getContacts();
+
             ContactsListItems.ItemsSource = contacts;
+
+            MessageBox.Show("Contact successfully added.");
         }
 
         private void Edit_Contact_btn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This is a test");
+            ContactsBinding selectedContact = (ContactsBinding)ContactsListItems.SelectedItem;
+
+            if(selectedContact == null)
+            {
+                MessageBox.Show("You have to select a contact to edit.");
+                return;
+            }
+            else
+            {
+                int idToPass = selectedContact.ID;
+                string first = selectedContact.firstName;
+                string last = selectedContact.lastName;
+                string address = selectedContact.address;
+                string phone = selectedContact.phoneNumber;
+                string email = selectedContact.email;
+
+                AddContactWindow ACW1 = new AddContactWindow(idToPass, first, last, address, phone, email);
+
+                ACW1.ShowDialog();
+            }
+
             contacts = DBH.getContacts();
+
             ContactsListItems.ItemsSource = contacts;
+
+            MessageBox.Show("All changes have been saved to the database.");
         }
 
         private void Del_Contact_btn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This is a test");
+            MessageBox.Show("Deleting the selected contact...");
+
+            ContactsBinding CB1 = (ContactsBinding)ContactsListItems.SelectedItem;
+
+            DBH.deleteContacts(CB1.ID);
+
             contacts = DBH.getContacts();
+
             ContactsListItems.ItemsSource = contacts;
         }
 
@@ -96,10 +135,16 @@ namespace ContactsApp
                     String[] contactInfo = line.Split(',');
                     DBH.addContacts(contactInfo[0], contactInfo[1], contactInfo[2], contactInfo[3], contactInfo[4]);
                 }
-                contacts = DBH.getContacts();
-                ContactsListItems.ItemsSource = contacts;
-                MessageBox.Show("Your contacts have been added");
+                MessageBox.Show("Your contacts have been added.");
             }
+            else
+            {
+                MessageBox.Show("An error occured with the open dialogue box...");
+            }
+            
+            contacts = DBH.getContacts();
+
+            ContactsListItems.ItemsSource = contacts;
         }
 
         private void Ex_Contact_btn_Click(object sender, RoutedEventArgs e)
@@ -119,7 +164,5 @@ namespace ContactsApp
                 File.WriteAllText(saveFileDialog.FileName, myContacts);
             }
         }
-
-
     }
 }
